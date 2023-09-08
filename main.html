@@ -9,19 +9,29 @@
 <body>	
 	<script>
 		function secondHighest(arr) {
-			let first = -1 , second = -1;
+		 if (arr.length <= 1) {
+                return -Infinity;
+            }
 
-			for(let i = 0; i <= arr.length-1; i++){
-				if(arr[i] > first){
-					second = first;
-					first = arr[i];
-				}
-		        else if( arr[i] > second && arr[i] != first){
-		            second = arr[i];
-		        }
-		    }
-		    console.log(second);
-			
+            let highest = -Infinity;
+            let secondHighest = -Infinity;
+
+            for (let i = 0; i < arr.length; i++) {
+                const current = arr[i];
+
+                if (current > highest) {
+                    secondHighest = highest;
+                    highest = current;
+                } else if (current < highest && current > secondHighest) {
+                    secondHighest = current;
+                }
+            }
+
+            if (secondHighest === -Infinity) {
+                return -Infinity;
+            }
+
+            return secondHighest;
 		}
 
 		function Main() {
